@@ -42,7 +42,7 @@ rm と add
 
 ▼ staging area の コミット
 git commit
-※ git commit -a で add を省略可能
+※ git commit -a で add を省略可能 (ファイル名は指定できない)
 
 
 ▼ 差分の確認

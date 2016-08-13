@@ -14,7 +14,6 @@ git push -u dotfiles master
 ※ ~/.ssh/config を作成しないと、push コマンドでも ssh コマンドを呼んでいるのか、publickey のエラーがでる。
 
 
-
 ▼ クローン
 git clone https://github.com/rytmt/dotfiles.git
 
