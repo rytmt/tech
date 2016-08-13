@@ -26,5 +26,19 @@ CentOS 7.2 で ss コマンドを実行したところ、/proc/${PID}/fd を ope
 ss では netlink を使用して高速化をしているよう。
 
 
+▼ minimal でインストールされないパッケージ
+bash-completion (← systemctl コマンドの補完など)
+telnet
+chrony
+ntpdate
+bind-util (dig)
+tcpdump
+psmisc (pstree)
+lsof
+screen
+wget
+sysstat
+rsync
+abrt
 
 
