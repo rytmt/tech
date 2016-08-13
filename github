@@ -8,9 +8,9 @@ identityfile ~/.ssh/id_rsa_github
 
 公開鍵を github に登録後、ssh git@github.com
 
-git remote add origin git@github.com:rytmt/dotfiles.git
+git remote add dotfiles git@github.com:rytmt/dotfiles.git
 
-git push -u origin master
+git push -u dotfiles master
 ※ ~/.ssh/config を作成しないと、push コマンドでも ssh コマンドを呼んでいるのか、publickey のエラーがでる。
 
 
@@ -24,6 +24,14 @@ git fetch
 git merge
 もしくは
 git pull
+
+
+▼ 登録済みリモートリポジトリの一覧
+git remote
+
+
+▼ リモートリポジトリのリネーム
+git remote rename ${OLD} ${NEW}
 
 
 

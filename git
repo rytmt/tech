@@ -42,6 +42,7 @@ rm と add
 
 ▼ staging area の コミット
 git commit
+※ git commit -a で add を省略可能
 
 
 ▼ 差分の確認
