@@ -14,3 +14,9 @@ PATH='/bin:/usr/bin:/sbin:/usr/sbin'
 IFS=$(printf ' \t\n_'); IFS=${IFS%_}
 LANG=C; LC_ALL=C
 export PATH IFS LANG LC_ALL
+
+# check arguments
+if [ $# -ne 0 ]; then
+    echo 'Argument error.'
+    exit 1
+fi
