@@ -1,0 +1,29 @@
+▼ 初回 push まで
+ssh-keygen -t rsa -b 4096
+
+vim ~/.ssh/config
+Host github.com
+Hostname github.com
+identityfile ~/.ssh/id_rsa_github
+
+公開鍵を github に登録後、ssh git@github.com
+
+git remote add origin git@github.com:rytmt/dotfiles.git
+
+git push -u origin master
+※ ~/.ssh/config を作成しないと、push コマンドでも ssh コマンドを呼んでいるのか、publickey のエラーがでる。
+
+
+
+▼ クローン
+git clone https://github.com/rytmt/dotfiles.git
+
+
+▼ リモートリポジトリとのマージ
+git fetch
+git merge
+もしくは
+git pull
+
+
+
