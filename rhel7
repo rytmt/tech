@@ -24,6 +24,7 @@ TCP ソケットの情報を参照する際、netstat は /proc/net/tcp から�
 (CentOS 6.7 で netstat -nat と ss -nat をそれぞれ strace したことより確認。サーバ高負荷時には /proc/net/tcp の参照に時間がかかる場合がある。)
 CentOS 7.2 で ss コマンドを実行したところ、/proc/${PID}/fd を open していなかった。
 ss では netlink を使用して高速化をしているよう。
+procfs のファイルは proc_create 関数で作成
 
 
 ▼ minimal でインストールされないパッケージ
