@@ -43,3 +43,24 @@ rsync
 abrt
 
 
+▼ Network の設定
+NetworkManager の使用が推奨されている。
+nmtui が使用しやすいが、onboot=no の部分を変更できない。(RHEL7.2はデフォルトno)
+onboot=yes とするために、以下のコマンドを実行。
+nmcli c mod ${CONN_NAME} connection.autoconnect yes
+変更の反映には systemctl restart NetworkManager を実行。
+service unit として network も定義されているが、これは systemd により自動生成されたファイルであり、
+/run/systemd/generator.late 配下に作成されており、/etc/rc.d/init.d/network スクリプトを実行するように記載されている。
+sysvinit との互換性保持のために生成されているものと考えられる。
+ - 余談
+network.service は systemctl の list-unit-files では表示されないが、list-units では表示される。
+list-unit-files ではインストールされた unit ファイルの一覧を表示させるため、network.service などが表示されない。
+また、システム起動時に自動で起動するサービスは list-unit-files を enable で grep するだけでは足りず、
+例えば multi-user を使用している場合、/usr/lib/systemd/system と /etc/systemd/system の multi-user.target.wants
+ディレクトリ内のシンボリックリンク先も起動するため、これらも確認する。
+(enable は unit ファイルの install セクションの wantedby を見ているだけ)
+list-units では現在アクティブな unit が表示されるため、インストール済みのもの全ては表示できない。
+systemctl list-units --all で inactive な unit も表示できるが、そもそも load されなかった unit は表示できない。
+
+
+
