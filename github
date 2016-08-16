@@ -20,7 +20,7 @@ git clone https://github.com/rytmt/dotfiles.git
 
 ▼ リモートリポジトリとのマージ
 git fetch
-git ditfiles/master
+git diff ditfiles/master
 git merge
 もしくは
 git pull
