@@ -26,6 +26,10 @@ git merge
 git pull
 
 
+▼ 特定ファイルのみ別ブランチから取得
+git checkout dotfiles/master -- ${FILENAME}
+
+
 ▼ 登録済みリモートリポジトリの一覧
 git remote
 
