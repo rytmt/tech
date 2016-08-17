@@ -13,6 +13,8 @@ https://access.redhat.com/documentation/en/red-hat-enterprise-linux/?version=7/
 ▼ ファイルシステムのレイアウト変更
 /bin, /sbin, /lib, /lib64 が /usr ディレクトリ配下に移動。シンボリックリンクとして元の場所に残っている。
 /usr と / を分けると / をマウントしただけではほぼ何もできなくなるため、分けない方が良い。
+/var/run ディレクトリが /run に移動し、/var/run は /run へのシンボリックリンクとなっている。
+また、/run は tmpfs でマウントされているため、再起動でファイルが削除されることに注意。
 
 
 ▼ How do I migrate from RHEL5 to RHEL7 ? (要ログイン)
@@ -69,8 +71,34 @@ wantedby の記載の有無により systemctl list-unit-files の (enable|disab
 enable のみを grep しても自動起動が有効になっているサービスを特定できない。
 (static で wants ディレクトリに配置されているような unit が存在するため。)
 
+追記：type=dbus のサービスの自動起動が変更できない。。。
+ → systemctl mask で /dev/null へのシンボリックリンク /etc/systemd/system/${SERVICE_NAME}.service
+    が作成され、これにより static なサービスも自動起動を停止させることができる。
+
+
+▼ tmpwatch の変更
+/etc/cron.daily に tmpwatch はなく、systemd-tmpfiles-clean.timer, systemd-tmpfiles-clean.service に置き換わった。
+
+
+▼ 各種初期設定
+o デフォルトターゲットの変更
+systemctl set-default multi-user.target
+
+o Firewall/SELinux 無効化
+systemctl disable firewalld
+vim /etc/selinux/config
+
+o ipv6 無効化
+https://access.redhat.com/solutions/8709
+
+o 特定サービスのファイルディスクリプタ変更
+mkdir /etc/systemd/system/${SERVICE_NAME}.service.d
+vim /etc/systemd/system/httpd.service.d/limit.conf
+[Service]
+LimitNOFILE=xxxxx
 
 
 
 
-
+▼ TODO
+systemd が他のサービスの起動に伴い、勝手(wantsなど記載なし)に他のサービスを起動しているかも。
