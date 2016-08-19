@@ -14,5 +14,13 @@ kernel 2.6 くらいからの機能
  を用いて、マウント状態などを切り離すことができる。)
 
 
+▼ netem
+Network Emulator
+Kernel 2.6 の機能で、tc コマンド(in iproute)から実行可能であり、NIC に対して
+遅延やパケットロスなどを発生させることができる。
+https://wiki.linuxfoundation.org/networking/netem
+ o eth0 に対して 100±50ms の遅延、10% のパケットロスを設定する
+   tc qdisc add dev eth0 root netem delay 100ms 50ms 10%
+
 
 
