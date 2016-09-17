@@ -23,4 +23,8 @@ https://wiki.linuxfoundation.org/networking/netem
    tc qdisc add dev eth0 root netem delay 100ms 50ms 10%
 
 
+▼ 削除したファイルの復元 (ができるかも)
+削除したファイルが、プロセスで開かれていたりする場合には、
+lsof | grep deleted でファイルディスクリプタを特定し、cp /proc/${pid}/${fd} recovery.dat で復元
 
+lsof で拾えない場合も、debugfs から lsdel で inode 番号が確認できれば、cat <inode> などで復元できる
