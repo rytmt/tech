@@ -1,3 +1,5 @@
+# memo
+
 http://d.hatena.ne.jp/zariganitosh/20150224/escape_sequence
 
 lsof ファイル削除 inode
