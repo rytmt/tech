@@ -36,3 +36,14 @@ https://wiki.linuxfoundation.org/networking/netem
 `lsof | grep deleted` でファイルディスクリプタを特定し、`cp /proc/${pid}/${fd} recovery.dat` で復元
 
 lsof で拾えない場合も、debugfs から lsdel で inode 番号が確認できれば、`cat <inode>` などで復元できる
+
+
+## ロケール
+`LANG < LC_* < LC_ALL`  
+date コマンドなどは、`LC_TIME` を使用する。`LC_*` が設定されていない場合は、`LANG` が使用される。  
+`LC_ALL` が設定されている場合は、`LC_*` が設定されていても参照されず、`LC_ALL` が使用される。  
+`LC_*` は設定されていないことが多く、`LANG` が使用されている。  
+というのは、`locale` コマンドで確認できる現在適用されているロケールの状態と、  
+`printenv | grep -i lc_` による環境変数の状態を比較するとわかる。
+http://linuxjm.osdn.jp/html/LDP_man-pages/man7/locale.7.html
+http://pubs.opengroup.org/onlinepubs/009695399/basedefs/xbd_chap07.html
