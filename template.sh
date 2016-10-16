@@ -6,6 +6,12 @@
 # error occur when refer undefined variable
 set -u
 
+# the shell shall write its input to standard error as it is read
+set -v
+
+# the shell shall write to standard error a trace
+set -x
+
 # set default permission
 umask 0022
 
@@ -20,3 +26,6 @@ if [ $# -ne 0 ]; then
     echo 'Argument error.'
     exit 1
 fi
+
+# global redirect for standard error
+exec 2> "${0}.error.$(date +%Y%m%d%H%M%S).log"
