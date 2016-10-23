@@ -64,3 +64,46 @@ https://linuxjm.osdn.jp/html/GNU_bash/man1/bash.1.html
 1. .bash_profile の権限を root:root 755 に変更
 1. $HOME/bin に必要なコマンドのシンボリックリンクを作成
 
+
+### シェルの実行方法
+#### 前提
+~/script.sh を実行する場合
+#### 動作確認環境
+GNU bash, version 4.1.2(1)-release (x86_64-redhat-linux-gnu)
+1. `~/script.sh`
+    - スクリプトファイルに実行権限が必要
+    - 新たなプロセスでスクリプトが実行されるため、カレントシェルとシェル変数は共有されない
+    - シバンを読み込む
+2. `sh ~/script.sh`
+    - スクリプトファイルには実行権限は不要
+    - 新たなプロセスでスクリプトが実行されるため、カレントシェルとシェル変数は共有されない
+    - **指定したシェルを使用してスクリプトを実行するため、シバンが読み込まれない**
+3. source ~/script.sh
+    - スクリプトファイルには実行権限は不要
+    - カレントシェルでスクリプトが実行されるため、シェル変数が共有される
+    - コメント行は読み飛ばされるため、シバンは読み込まれない
+
+
+### while のサブシェル
+#### 動作確認環境
+GNU bash, version 4.1.2(1)-release (x86_64-redhat-linux-gnu)
+
+#### 確認結果
+標準入力があると、while はサブシェルを起動するらしい。  
+(while の中でシェル変数を使用したり、exit or break をするときに要注意)  
+
+#### 確認方法
+1. 標準入力なし
+```sh
+while read line ; do echo $BASHPID ; done <<EOS
+1
+EOS
+```
+2. 標準入力あり
+```sh
+echo 1 | while read line ; do echo $BASHPID ; done
+```
+
+
+
+

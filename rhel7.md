@@ -36,7 +36,7 @@ procfs のファイルは proc_create 関数で作成。
 - telnet
 - chrony
 - ntpdate
-- bind-util (dig)
+- bind-utils (dig)
 - tcpdump
 - psmisc (pstree)
 - lsof
