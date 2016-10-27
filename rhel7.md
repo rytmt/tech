@@ -44,6 +44,7 @@ procfs のファイルは proc_create 関数で作成。
 - wget
 - sysstat
 - rsync
+- hdparm
 - abrt
 
 
