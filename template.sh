@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # clear all alias if defined unalias command
-[ "$(type unalias >/dev/null 2>&1)" ] && unalias -a
+[ "$(\type unalias >/dev/null 2>&1)" ] && \unalias -a
 
 # error occur when refer undefined variable
 set -u
