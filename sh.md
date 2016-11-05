@@ -45,6 +45,10 @@ https://linuxjm.osdn.jp/html/GNU_bash/man1/bash.1.html
 - 非インタラクティブシェルの場合
     1. $BASH_ENV
 
+※ `~/.bash_profile` では `~/.bashrc` を読み込んでいることがあるが、ログインかつインタラクティブなシェルでは `~/.bashrc` を一度しか読み込んでいないようだった。  
+※ `~/.bashrc` では `/etc/bashrc` を読み込んでいることがある。  
+※ `/etc/bashrc` では、`/etc/profile.d/*.sh` を読み込んでいることがある。
+
 #### sh として bash を起動した場合
 - ログインシェルの場合
     1. /etc/profile
