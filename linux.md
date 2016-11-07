@@ -47,3 +47,11 @@ date コマンドなどは、`LC_TIME` を使用する。`LC_*` が設定され�
 `printenv | grep -i lc_` による環境変数の状態を比較するとわかる。
 http://linuxjm.osdn.jp/html/LDP_man-pages/man7/locale.7.html
 http://pubs.opengroup.org/onlinepubs/009695399/basedefs/xbd_chap07.html
+
+
+## バッファリング
+コマンドの実行結果をファイルにリダイレクトした場合、端末(標準出力)に出力した場合とは異なり、
+バッファリングされている様子が見られる場合がある。  
+これは、ファイルと標準出力では使用されるバッファが異なることが原因となっている。  
+(デフォルトでは、ファイルにはブロックバッファ、標準出力にはラインバッファが使用される。)  
+詳細は `man setbuf` を参照。
