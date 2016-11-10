@@ -7,6 +7,20 @@
 対策のため、間に grep ^ などを挟んで、各行の末尾に必ず改行が存在するようにする。  
 
 
+### `env name=value command` と `name=value command` の違い
+POSIX 的には以下のように記載されているが、言いたいことがよくわからない。  
+http://pubs.opengroup.org/onlinepubs/9699919799/utilities/env.html  
+> Some have suggested that env is redundant since the same effect is achieved by:
+> 
+> name=value ... utility [ argument ... ]
+> 
+> The example is equivalent to env when an environment variable is being added to the environment of the command, but not when the environment is being set to the given value. The env utility also writes out the current environment if invoked without arguments. There is sufficient functionality beyond what the example provides to justify inclusion of env.
+
+同様の質問が stackoverflow にあり、その回答によると、`name` の部分に使用できる文字が異なるとのこと。
+`env` を使用した場合は、`name` の部分に変数で使用できない文字や記号を使用したり、シェル変数を書くことが可能。
+基本的には `env` を使用する必要のある場面はないだろうとのこと。  
+https://stackoverflow.com/questions/29322463/is-there-an-advantage-to-using-env-for-setting-variable-for-a-subshell
+
 
 ## 全般 (not POSIX)
 
