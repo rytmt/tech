@@ -6,6 +6,79 @@
  - postfix-2.10.1-6
 
 
+## ディスク追加
+ 1. OS がディスクを認識していることを確認  
+    `fdisk -l`  
+ 2. パーティション作成  
+    `fdisk /dev/$DISK`  
+
+```
+     # fdisk /dev/sdb
+     Welcome to fdisk (util-linux 2.23.2).
+     
+     Changes will remain in memory only, until you decide to write them.
+     Be careful before using the write command.
+     
+     Device does not contain a recognized partition table
+     Building a new DOS disklabel with disk identifier 0x1c9f2ca8.
+     
+     The device presents a logical sector size that is smaller than
+     the physical sector size. Aligning to a physical sector (or optimal
+     I/O) size boundary is recommended, or performance may be impacted.
+     
+     
+     コマンド (m でヘルプ): p
+     
+     Disk /dev/sdb: 2000.4 GB, 2000398934016 bytes, 3907029168 sectors
+     Units = sectors of 1 * 512 = 512 bytes
+     Sector size (logical/physical): 512 bytes / 4096 bytes
+     I/O サイズ (最小 / 推奨): 4096 バイト / 4096 バイト
+     Disk label type: dos
+     ディスク識別子: 0x1c9f2ca8
+     
+     デバイス ブート      始点        終点     ブロック   Id  システム
+     
+     コマンド (m でヘルプ): n
+     Partition type:
+        p   primary (0 primary, 0 extended, 4 free)
+        e   extended
+     Select (default p): p
+     パーティション番号 (1-4, default 1): 1
+     最初 sector (2048-3907029167, 初期値 2048):
+     初期値 2048 を使います
+     Last sector, +sectors or +size{K,M,G} (2048-3907029167, 初期値 3907029167):
+     初期値 3907029167 を使います
+     Partition 1 of type Linux and of size 1.8 TiB is set
+     
+     コマンド (m でヘルプ): p
+     
+     Disk /dev/sdb: 2000.4 GB, 2000398934016 bytes, 3907029168 sectors
+     Units = sectors of 1 * 512 = 512 bytes
+     Sector size (logical/physical): 512 bytes / 4096 bytes
+     I/O サイズ (最小 / 推奨): 4096 バイト / 4096 バイト
+     Disk label type: dos
+     ディスク識別子: 0x1c9f2ca8
+     
+     デバイス ブート      始点        終点     ブロック   Id  システム
+     /dev/sdb1            2048  3907029167  1953513560   83  Linux
+     
+     コマンド (m でヘルプ): w
+     パーティションテーブルは変更されました！
+     
+     ioctl() を呼び出してパーティションテーブルを再読込みします。
+     ディスクを同期しています。
+```
+ 3. ファイルシステムの作成  
+    `mkfs.xfs $DISK`  
+    data = bsize=4096  より、ブロックサイズが 4096 byte で作成されていることがわかる  
+    ファイルシステムの情報を後から参照する場合は、`xfs_info $MOUNT_POINT` を実行する
+ 4. 手動マウント
+    `mount $DISK $MOUNT_POINT`
+ 5. 自動マウント設定  
+    `blkid $DISK` を実行して、uuid を確認する  
+    `vim /etc/fstab` を実行して、行を追加する
+
+
 ## Samba の設定
 ### インストール
 `yum install samba samba-client samba-common`
