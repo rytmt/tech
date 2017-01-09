@@ -172,9 +172,9 @@
 
 ### 動作確認
 ```sh
-    $ sendmail ryoto0114@yahoo.co.jp<<EOS
-    From:ryoto0114@gmail.com
-    To:ryoto0114@yahoo.co.jp
+    $ sendmail $DST_ADDR<<EOS
+    From:$FROM_ADDR
+    To:$DST_ADDR
     Subject:test subject
     
     test message.
