@@ -19,7 +19,7 @@ fi
 umask 0022
 
 # global redirect for standard error
-exec 2> "${0}.error.$(date +%Y%m%d%H%M%S).log"
+exec 2> "$(basename ${0}).error.$(date +%Y%m%d%H%M%S).log"
 
 # error occur when refer undefined variable
 set -u
