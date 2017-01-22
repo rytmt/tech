@@ -107,14 +107,25 @@ hostnamectl set-hostname $hostname
     alias grep='grep --color=auto'
     alias ls='ls --color=auto'
     
-    export HISTSIZE=9999
+    HISTSIZE=9999
     HISTTIMEFORMAT='%y/%m/%d %H:%M:%S '
     
     stty stop undef
     stty start undef
 
     PS1='\n\[\033[2m\t \! \j\[\033[00m\] \[\033[38;5;189m\]\[\033[40;1m\]$(printf "${PWD%/*}")/\[\033[38;5;214m\]$(basename "$PWD")\[\033[00m\]\n \[\033[38;5;189m\]\$ \[\033[00m\]'
+
+    export HISTSIZE HISTTIMEFORMAT PS1
 ```
+
+
+## logrotate
+`/var/log/wtmp` と `/var/log/btmp` の保存期間を変更
+
+
+## スケルトンディレクトリ
+`/etc/skel` ディレクトリに `.bashrc` などを配置
+
 
 ## 不要サービスの停止
 `pstree` で確認しつつ、`systemctl disable` と `systemctl mask` で停止させる  
@@ -134,5 +145,9 @@ hostnamectl set-hostname $hostname
 動作状況の確認  
 `*` が先頭に表示されている行は、同期が成功しているサーバ  
 `chronyc sources`  
+
+### ハードウェアクロックとシステムクロックの状態確認
+`hwclock --show` コマンドでハードウェアクロックを、`date` コマンドでシステムクロックを確認。  
+ハードウェアクロックがずれている場合は、`hwclock -w` コマンドで同期を実行。  
 
 
