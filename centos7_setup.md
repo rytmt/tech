@@ -110,8 +110,8 @@ hostnamectl set-hostname $hostname
     HISTSIZE=9999
     HISTTIMEFORMAT='%y/%m/%d %H:%M:%S '
     
-    stty stop undef
-    stty start undef
+    [ -t 0 ] && stty stop undef
+    [ -t 0 ] && stty start undef
 
     PS1='\n\[\033[2m\t \! \j\[\033[00m\] \[\033[38;5;189m\]\[\033[40;1m\]$(printf "${PWD%/*}")/\[\033[38;5;214m\]$(basename "$PWD")\[\033[00m\]\n \[\033[38;5;189m\]\$ \[\033[00m\]'
 
