@@ -123,6 +123,19 @@ EOS
 echo 1 | while read line ; do echo $BASHPID ; done
 ```
 
+### nohup と disown
+- バックグラウンドジョブを終了させない  
+    - nohup で SIGHUP を無視
+        - huponexit off は exit/logout での SIGHUP を抑制するだけ
+    - 標準入力は閉じる
+    - disown で ジョブテーブルから削除し、SIGTERM の対象外にする
+
+``` sh
+nohup ${command} >out.log 2>&1 </dev/null &
+disown
+```
+#### 参考
+https://www.glamenv-septzen.net/view/854
 
 
 
