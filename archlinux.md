@@ -213,6 +213,10 @@ ILoveCandy
    - curl
    - chrony
    - bind-tools
+   - gcc
+   - make
+   - linux-headers
+   - perl
 
 
 
@@ -221,4 +225,115 @@ ILoveCandy
 ### 参考
 https://wiki.archlinuxjp.org/index.php/Xorg
 
-### 
+### X インストール
+```
+pacman -S xorg-server xorg-server-utils
+pacman -S xorg-xinit
+pacman -S xorg-xev
+pacman -S xf86-video-vesa xf86-vedio-fbdev  # for virutal box
+pacman -S xterm
+```
+
+### virtualbox guest addtions
+cd をマウントしてインストールを実行  
+linux-headers などがないとインストールに失敗する  
+これがないと、startx が上手くいかない  
+VBoxClient-all を .xinitrc などに記載する  
+
+
+### ratpoison
+```
+pacman -S ratpoison
+```
+
+### /etc/X11/xorg.conf.d/00-keyboard.conf
+```
+Section "InputClass"
+        Identifier "system-keyboard"
+        MatchIsKeyboard "on"
+        Option "XkbLayout" "jp"
+        Option "XkbModel" "pc106"
+EndSection
+```
+
+### /etc/modules-load.d/virtualbox.conf
+```
+vboxguest
+vboxsf
+vboxvideo
+```
+
+
+
+### ~/.xinitrc
+```
+/usr/bin/VBoxClient-all
+
+[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
+
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+export DefaultIMModule=fcitx
+fcitx-autostart
+
+xsetroot -solid black &
+
+xcompmgr -c -f -D 5 &
+
+exec /usr/bin/ratpoison
+```
+
+### ~/.Xresources
+```
+XTerm*termName: xterm-256color
+XTerm*locale:   true
+XTerm*selectToClipboard: true
+XTerm*saveLines: 2000
+
+*xterm*background: #101010
+*xterm*foreground: #d0d0d0
+*xterm*cursorColor: #d0d0d0
+*xterm*color0: #101010
+*xterm*color1: #960050
+*xterm*color2: #66aa11
+*xterm*color3: #c47f2c
+*xterm*color4: #30309b
+*xterm*color5: #7e40a5
+*xterm*color6: #3579a8
+*xterm*color7: #9999aa
+*xterm*color8: #303030
+*xterm*color9: #ff0090
+*xterm*color10: #80ff00
+*xterm*color11: #ffba68
+*xterm*color12: #5f5fee
+*xterm*color13: #bb88dd
+*xterm*color14: #4eb4fa
+*xterm*color15: #d0d0d0
+```
+
+### firefox
+```
+pacman -S firefox otf-ipafont
+```
+  - 日本語の言語パックをインストール
+  - 言語設定を日本語に変更
+
+
+### 日本語入力
+```
+pacman fcitx fcitx-mozc fcitx-configtool fcitx-im
+```
+
+
+### ~/.ratpoisonrc
+```
+bind f exec firefox
+```
+
+
+## 残タスク
+  - キーバインドの変更
+  - emacs (GUI) のインストール/設定
+
+
