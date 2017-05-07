@@ -2,18 +2,22 @@
 
 ## 初回 push まで
 
-    ssh-keygen -t rsa -b 4096
+ssh-keygen -t rsa -b 4096
 
-    vim ~/.ssh/config
-    Host github.com
-    Hostname github.com
-    identityfile ~/.ssh/id_rsa_github
+vim ~/.ssh/config
+```
+Host github.com
+Hostname github.com
+identityfile ~/.ssh/id_rsa_github
+```
 
 公開鍵を github に登録後、`ssh git@github.com`  
 github 上でリポジトリを作成
 
-    git remote add dotfiles git@github.com:rytmt/dotfiles.git
-    git push -u dotfiles master
+```
+git remote add dotfiles git@github.com:rytmt/dotfiles.git
+git push -u dotfiles master
+```
 
 ※ ~/.ssh/config を作成しないと、push コマンドでも ssh コマンドを呼んでいるのか、publickey のエラーがでる。
 
