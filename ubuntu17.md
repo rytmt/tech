@@ -74,6 +74,28 @@ autokey-gtk -c
 ダウンロードした `.ttf` や `.otf` ファイルを `/usr/local/share/font` に配置
 
 
+## Clipboard (for screen copy mode)
+```
+sudo apt-get install xsel
+```
+```
+vim /usr/local/bin/putclip
+```
+```
+#!/bin/sh
+
+cat /dev/stdin | xsel --input
+cat /dev/stdin | xsel --clipboard  --input
+```
+
+## Clipboard Manager
+```
+sudo apt-get install parcellite
+```
+  - `Ctrl + Alt + h` で履歴の呼び出し
+  - `Ctrl + Alt + p` で設定メニューの呼び出し
+
+
 ## emacs
 ```
 sudo apt-get install emacs25 emacs-mozc
@@ -113,3 +135,20 @@ git clone https://github.com/rytmt/dotfiles.git
 ```
 
 
+
+## NFS Client
+### Install
+```
+sudo apt-get install nfs-common
+```
+
+### Test
+```
+mount -t ${NFS_SERVER}:/shared/path /local/path
+```
+
+## Configuration
+vim /etc/fstab
+```
+${NFS_SERVER}:/shared/path  /local/path  nfs  defaults  0  0
+```

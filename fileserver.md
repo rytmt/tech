@@ -4,7 +4,8 @@
  - OS: CentOS 7.3.1611
  - Samba: 4.4.4-9
  - postfix-2.10.1-6
-
+ - nfs-utils-1.3.0-0.33
+ 
 
 ## ディスク追加
  1. OS がディスクを認識していることを確認  
@@ -181,4 +182,22 @@
     
     .
     EOS
+```
+
+
+## NFS の設定
+### インストール
+```
+yum install nfs-utils
+```
+
+### 設定例
+vim /etc/exports
+```
+/share/directory 192.168.1.0/24(rw)
+```
+
+### 起動/停止
+```
+systemctl start rpcbind nfs-server
 ```
