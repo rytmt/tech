@@ -2,13 +2,16 @@
 
 
 ## 初期設定
-    git config --global user.name 'MY NAME'
-    git config --global user.mail 'mymail@local'
-    git config --global core.editor 'vim'
-    git config --global color.diff auto
-    git config --global color.status auto
-    git config --global color.branch auto
-    git config --global alias.graph "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
+```
+git config --global user.name 'MY NAME'
+git config --global user.email 'mymail@local'
+git config --global core.editor 'vim'
+git config --global color.diff auto
+git config --global color.status auto
+git config --global color.branch auto
+git config --global alias.graph "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
+```
+`git config --list` で設定の確認ができる
 
 
 ## リポジトリの初期化
