@@ -19,3 +19,8 @@ M-x describe-bindings
 ```
 M-x package-install solarized-theme
 ```
+
+## S 式の評価
+```
+C-x C-e
+```
