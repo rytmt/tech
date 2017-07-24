@@ -1,0 +1,44 @@
+#+TITLE: Weechat
+
+* Environment
+ - Fedora 25
+ - weechat-1.9-1.fc25.x86_64
+
+
+* Setting
+ - irc サーバ追加
+/server add ${CONFIG_NAME} ${SERVER_NAME}/${PORT}
+
+ - プラグイン
+/script install chanmon.pl
+/script install go.py
+/script install colorize_lines.pl
+
+ - キーバインド
+/key bind ctrl-G /go
+/key bind meta-n /window down
+/key bind meta-p /window up
+/key bind ctrl-I /input complete_next
+/key bind meta2-Z /input complete_previous
+
+- ログ出力
+/set logger.level.irc 2
+
+- join/part/quit の非表示
+/filter add irc_smart * irc_smart_filter *
+
+- 入力バーを一箇所にする
+/bar add rootinput root bottom 1 0 [buffer_name]+[input_prompt]+(away),[input_search],[input_paste],input_text
+/bar del input
+
+
+* Command
+ - キーバインドの確認
+/key bind <Alt-k>
+
+ - ウィンドウ分割
+/window splith 30
+
+ - 設定の保存
+/save
+
