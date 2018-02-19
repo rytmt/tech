@@ -31,6 +31,13 @@
 /bar add rootinput root bottom 1 0 [buffer_name]+[input_prompt]+(away),[input_search],[input_paste],input_text
 /bar del input
 
+- 文字コード
+/set charset.default.encode ISO-2022-JP
+/set charset.default.decode ISO-2022-JP
+
+- バッファリスト
+/set weechat.bar.buflist.position bottom
+
 
 * Command
  - キーバインドの確認
