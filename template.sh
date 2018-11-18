@@ -22,9 +22,14 @@ IFS=$(printf ' \t\n_'); IFS=${IFS%_}
 LANG=C; LC_ALL=C
 export PATH IFS LANG LC_ALL
 
+# error function
+err() {
+    printf "[$(date +'%Y-%m-%dT%H:%M:%S%z')]: $@\n" >&2
+}
+
 # check arguments
 if [ $# -ne 0 ]; then
-    printf 'Argument error.\n'
+    err 'Argument error.\n'
     exit 1
 fi
 
