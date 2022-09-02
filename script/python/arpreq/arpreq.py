@@ -3,10 +3,10 @@
 from scapy.all import *
 
 dst_mac = 'ff:ff:ff:ff:ff:ff'
-src_mac = 'xx:xx:xx:xx:xx:xx'
+src_mac = '00:50:56:b3:77:1b'
 
-dst_ip = 'x.x.x.x'
-src_ip = 'x.x.x.x'
+dst_ip = '192.168.66.58'
+src_ip = '192.168.66.57'
 
 arp_type = 1
 
