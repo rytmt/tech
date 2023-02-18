@@ -63,7 +63,9 @@ expect \"yes/no\" {
     send \"${target_upass}\r\"
 }
 expect eof
-") | while read line; do printf "%s %s\n" "$(date --iso-8601='seconds')" "${line}"; done | tee "${target_host}_$(echo -n ${RCMD} | sed 's/ /_/g').log"
+") \
+  | while read line; do printf "%s %s\n" "$(date --iso-8601='seconds')" "${line}"; done \
+  | tee "${target_host}_$(echo -n ${RCMD} | sed 's/ /_/g').log"
 
 done
 
