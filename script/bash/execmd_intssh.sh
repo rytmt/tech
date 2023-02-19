@@ -43,7 +43,9 @@ fi
 
 TARGETLIST="$1"
 RCMD="$2"
+SEP='============================================================'
 
+echo ${SEP}
 
 cat "${TARGETLIST}" | while read targetline; do
 
@@ -65,7 +67,9 @@ expect \"yes/no\" {
 expect eof
 ") \
   | while read line; do printf "%s %s\n" "$(date --iso-8601='seconds')" "${line}"; done \
-  | tee "${target_host}_$(echo -n ${RCMD} | sed 's/ /_/g').log"
+  | tee "${target_host}_$(echo -n ${RCMD} | sed -e 's/ /_/g' -e 's|/|_|g').log"
+
+    echo ${SEP}
 
 done
 
