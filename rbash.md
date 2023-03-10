@@ -24,6 +24,9 @@ echo -n $password | passwd --stdin accountname
 
 export PATH=/path/to/home/bin
 
+# ホームディレクトリ上のドットファイルや bin 配下を見せたくない場合
+cd ~/work
+
 . ~/.bashrc
 ```
 
