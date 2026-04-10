@@ -6,6 +6,7 @@ old=-1
 new=0
 
 while read line; do
+    [ "${old}" = "65535" ] && old=-1
     new="$(echo $line | grep -Eo 'icmp_seq=[0-9]+' | cut -d '=' -f 2)"
     withtime="$( echo "$(date '+[%Y/%m/%d %H:%M:%S.%N]') $line")"
     [ "$new" = "" ] && new=0
